@@ -6,17 +6,18 @@ import { useRouter } from "next/router";
 
 export default function PageOne({ state, dispatch }) {
   const router = useRouter();
-  const [isShowLoadBtn, setLoad] = useState(true);
+  const [isLoading, setLoad] = useState(false);
 
   const load = async () => {
+    setLoad(true);
     const res = await getValue();
-    setLoad(false);
     if (res?.result.toLowerCase() === "ok") {
       dispatch({
         type: "setValues",
         payload: { values: res.value, key: res.key },
       });
     }
+    setLoad(false);
   };
 
   const calculate = () => {
@@ -28,12 +29,13 @@ export default function PageOne({ state, dispatch }) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        {isShowLoadBtn && (
+        {state.values.length === 0 && (
           <button className={styles.button} onClick={load} type="submit">
-            Load
+            Load{isLoading && "..."}
           </button>
         )}
-        {!isShowLoadBtn && (
+
+        {state.values.length > 0 && (
           <>
             {state.values.map((val, i) => {
               return <input key={`${i}`} type="text" defaultValue={val} />;

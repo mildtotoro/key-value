@@ -7,6 +7,11 @@
   align-items: center;
 }
 
+.button {
+  padding: 7px 15px;
+  margin-top: 20px;
+}
+
 .main {
   padding: 5rem 0;
   flex: 1;

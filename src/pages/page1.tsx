@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { getValue } from "../api/service";
-import { useState, useReducer } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 
 export default function PageOne({ state, dispatch }) {
@@ -27,13 +27,9 @@ export default function PageOne({ state, dispatch }) {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         {isShowLoadBtn && (
-          <button onClick={load} type="submit">
+          <button className={styles.button} onClick={load} type="submit">
             Load
           </button>
         )}
@@ -42,14 +38,12 @@ export default function PageOne({ state, dispatch }) {
             {state.values.map((val, i) => {
               return <input key={`${i}`} type="text" defaultValue={val} />;
             })}
-            <button onClick={calculate} type="submit">
+            <button className={styles.button} onClick={calculate} type="submit">
               Calculate
             </button>
           </>
         )}
       </main>
-
-      <footer className={styles.footer}></footer>
     </div>
   );
 }

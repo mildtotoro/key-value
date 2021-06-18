@@ -1,64 +1,50 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-export default function Home() {
+import styles from "../styles/page.module.css";
+import { getValue } from "../api/service";
+import { useState } from "react";
+import { useRouter } from "next/router";
+
+export default function PageOne({ state, dispatch }) {
+  const router = useRouter();
+  const [isLoading, setLoad] = useState(false);
+
+  const load = async () => {
+    setLoad(true);
+    const res = await getValue();
+    if (res?.result.toLowerCase() === "ok") {
+      dispatch({
+        type: "setValues",
+        payload: { values: res.value, key: res.key },
+      });
+    }
+    setLoad(false);
+  };
+
+  const calculate = () => {
+    router.push({
+      pathname: "/page2",
+    });
+  };
+
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        {state.values.length === 0 && (
+          <button className={styles.button} onClick={load} type="submit">
+            Load{isLoading && "..."}
+          </button>
+        )}
 
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        {state.values.length > 0 && (
+          <>
+            {state.values.map((val, i) => {
+              return <input key={`${i}`} type="text" defaultValue={val} />;
+            })}
+            <button className={styles.button} onClick={calculate} type="submit">
+              Calculate
+            </button>
+          </>
+        )}
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
     </div>
   );
 }

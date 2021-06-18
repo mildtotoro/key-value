@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/page.module.css";
 import { getValue } from "../api/service";
 import { useState } from "react";
 import { useRouter } from "next/router";

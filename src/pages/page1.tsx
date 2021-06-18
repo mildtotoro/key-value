@@ -1,4 +1,3 @@
-import Head from "next/head";
 import styles from "../styles/page.module.css";
 import { getValue } from "../api/service";
 import { useState } from "react";

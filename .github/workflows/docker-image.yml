@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Linux_Container_Workflow
 
 on:
   push:
@@ -7,11 +7,13 @@ on:
     branches: [main]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  build-and-deploy:
+      runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v2
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@main
+      # - uses: actions/checkout@v2
       # - name: Build the Docker image
       # run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
       # - name: Log in to Docker Hub

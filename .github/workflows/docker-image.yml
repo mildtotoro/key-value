@@ -45,8 +45,8 @@ jobs:
           resource-group: ${{ secrets.RESOURCE_GROUP }}
           dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
           image: "mildtotoro/key-value:latest"
-          # registry-login-server: 'https://hub.docker.com/repository/docker/mildtotoro/key-value'
-          # registry-username: ${{ secrets.DOCKER_USERNAME }}
-          # registry-password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry-login-server: "https://hub.docker.com/repository/docker/mildtotoro/key-value"
+          registry-username: ${{ secrets.DOCKER_USERNAME }}
+          registry-password: ${{ secrets.DOCKERHUB_TOKEN }}
           name: key-value-app
           location: "Southeast Asia"

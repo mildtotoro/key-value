@@ -39,4 +39,5 @@ jobs:
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           name: key-value-app
+          ports: "80"
           location: "Southeast Asia"

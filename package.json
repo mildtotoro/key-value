@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 80",
     "lint": "next lint",
-    "deploy": ""
+    "deploy": "docker build -t mildtotoro/key-value . && docker run -p 3000:3000 mildtotoro/key-value"
   },
   "dependencies": {
     "axios": "^0.21.1",

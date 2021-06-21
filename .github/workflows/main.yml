@@ -43,5 +43,5 @@ jobs:
           name: key-value-app
           dns-name-label: key-value-app
           location: "Southeast Asia"
-          ports: 80
+          ports: "80"
           environment-variables: "PORT"="80"

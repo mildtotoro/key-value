@@ -1,3 +1,5 @@
+# https://medium.com/@mohamedtabtaoui/create-and-deploy-web-application-to-azure-container-instances-aci-using-github-actions-eca218969ce5
+# https://docs.microsoft.com/en-us/azure/container-instances/container-instances-multi-container-group
 name: Build and deploy
 
 on:
@@ -39,5 +41,6 @@ jobs:
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           name: key-value-app
-          ports: "3000"
+          ports: "80"
           location: "Southeast Asia"
+          environment-variables: "PORT=80"

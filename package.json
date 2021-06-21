@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "docker": "docker build -t mildtotoro/key-value . && docker run -p 3000:3000 mildtotoro/key-value"
+    "deploy": "docker build -t mildtotoro/key-value . && docker run -p 3000:3000 mildtotoro/key-value"
   },
   "dependencies": {
     "axios": "^0.21.1",

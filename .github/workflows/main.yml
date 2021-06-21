@@ -43,4 +43,4 @@ jobs:
           name: key-value-app
           location: "Southeast Asia"
           ports: "80"
-          environment-variables: "PORT"="80"
+          environment-variables: PORT="80"
